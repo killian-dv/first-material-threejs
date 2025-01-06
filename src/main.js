@@ -7,9 +7,31 @@ const canvas = document.querySelector("canvas.webgl");
 // scene
 const scene = new THREE.Scene();
 
+// texture
+const textureLoader = new THREE.TextureLoader();
+const doorColorTexture = textureLoader.load("./textures/door/color.jpg");
+const doorAlphaTexture = textureLoader.load("./textures/door/alpha.jpg");
+const doorAmbientOcclusionTexture = textureLoader.load(
+  "./textures/door/ambientOcclusion.jpg"
+);
+const doorHeightTexture = textureLoader.load("./textures/door/height.jpg");
+const doorNormalTexture = textureLoader.load("./textures/door/normal.jpg");
+const doorMetalnessTexture = textureLoader.load(
+  "./textures/door/metalness.jpg"
+);
+const doorRoughnessTexture = textureLoader.load(
+  "./textures/door/roughness.jpg"
+);
+const matcapTexture = textureLoader.load("./textures/matcaps/1.png");
+const gradientTexture = textureLoader.load("./textures/gradients/3.jpg");
+
+doorColorTexture.colorSpace = THREE.SRGBColorSpace;
+matcapTexture.colorSpace = THREE.SRGBColorSpace;
+
 // objects
 // mesh basic material
-const material = new THREE.MeshBasicMaterial();
+const material = new THREE.MeshBasicMaterial({ map: doorColorTexture });
+// const material = new THREE.MeshBasicMaterial();
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), material);
 sphere.position.x = -1.5;
